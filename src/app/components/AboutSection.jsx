@@ -61,7 +61,6 @@ const TAB_DATA = [
     <li>
       <b>Rajiv Gandhi Institute of Petroleum Technology</b>
       <ul>
-        <span style={{ fontFamily: 'Arial', fontWeight: 'bold' }}>2021-2025</span>
         <ul>Institute of National Importance</ul>
         <ul>Bachelors in Computer Science in Engineering</ul>
       </ul>
@@ -70,14 +69,12 @@ const TAB_DATA = [
     <li>
       <b>St. Stevens</b>
       <ul>
-        <span style={{ fontFamily: 'Arial', fontWeight: 'bold' }}>2018-2020</span>
       </ul>
     </li>
 
     <li>
       <b>Shri Guru Tegh Bahadur Academy</b>
       <ul>
-        <span style={{ fontFamily: 'Arial', fontWeight: 'bold' }}>2005-2020</span>
       </ul>
     </li>
   </ul>
@@ -99,11 +96,11 @@ const AboutSection = () => {
   return (
     <section className="text-white" id="about">
       <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-        <Image src="/images/about-image.png" width={500} height={500} />
+        <Image src="/images/about-image.png" alt="" width={500} height={500} />
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
           <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
           <p className="text-base lg:text-lg">
-          I'm an aspiring SDE intern, equipped with a strong background in full-stack development and a solid foundation in AI/ML. Proficiency in both front-end and back-end technologies drives my passion for coding and problem- solving. My AI/ML knowledge adds an innovative dimension to my skill set. I'm eager to contribute, learn, and collaborate on software projects, aiming to blend technical expertise with creative thinking to craft impactful and forward-thinking solutions.
+          I am an aspiring SDE intern, equipped with a strong background in full-stack development and a solid foundation in AI/ML. Proficiency in both front-end and back-end technologies drives my passion for coding and problem- solving. My AI/ML knowledge adds an innovative dimension to my skill set. I am eager to contribute, learn, and collaborate on software projects, aiming to blend technical expertise with creative thinking to craft impactful and forward-thinking solutions.
           </p>
           <div className="flex flex-row justify-start mt-8">
             {TAB_DATA.map((tabItem) => (
