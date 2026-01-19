@@ -25,7 +25,11 @@ const achievementsList = [
     value: "8",
     postfix: "+"
   },
-  
+];
+
+const achievementsContent = [
+  "Awarded Best Intern at DataToBiz for outstanding performance and contributions during the internship.",
+  "Certifications: Machine Learning by Andrew Ng (Coursera), Generative AI for Everyone (Coursera)."
 ];
 
 const AchievementsSection = () => {
@@ -59,6 +63,14 @@ const AchievementsSection = () => {
             </div>
           );
         })}
+      </div>
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold text-white mb-4">Achievements</h2>
+        <ul className="list-disc pl-6 text-[#ADB7BE] space-y-2">
+          {achievementsContent.map((achievement, index) => (
+            <li key={index}>{achievement}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );

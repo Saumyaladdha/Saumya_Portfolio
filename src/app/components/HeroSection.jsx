@@ -24,21 +24,14 @@ const HeroSection = () => {
               sequence={[
                 "Saumya Laddha",
                 1500,
-                "Software-Developer",
-                500,
-                "Full-stack Developer",
-                500,
-                "AI/ML Enthusiast",
-                500,
+                "AI/ML Engineer",
+                1500,
               ]}
               wrapper="span"
               speed={50}
               repeat={Infinity}
             />
           </h1>
-          <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-          Aspiring SDE intern with strong full-stack development skills and AI/ML expertise. Eager to contribute, learn, and collaborate on impactful software projects.
-          </p>
           <div>
             <Link
               href="/#contact"
@@ -47,7 +40,7 @@ const HeroSection = () => {
               Hire Me
             </Link>
             <Link
-              href="/mycv.pdf"
+              href="/SaumyaLaddhaCV.pdf"
               target="_blank" 
               className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 hover:bg-slate-800 text-white mt-3"
             >

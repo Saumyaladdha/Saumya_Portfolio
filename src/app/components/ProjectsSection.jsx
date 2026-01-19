@@ -1,121 +1,109 @@
 "use client";
-import React, { useState, useRef } from "react";
-import ProjectCard from "./ProjectCard";
-import ProjectTag from "./ProjectTag";
+import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import ProjectCard from "./ProjectCard";
 
 const projectsData = [
   {
     id: 1,
-    title: "Text-Summarization Project",
-    description: "Utilizes Pegasus, Transformer architectures, and Hugging Face's Dailymail/CNN model for effective text summarization, aiming for concise and clear information retrieval.",
-    image: "/images/projects/1.png",
-    tag: ["All", "AI/ML"],
-    gitUrl: "https://github.com/Saumyaladdha/Text-Summarizer-Project",
+    title: "Multi-Agent Travel RAG System",
+    description: [
+      "Engineered a multi-agent LLM-based RAG system using LangGraph for end-to-end travel assistance.",
+      "Designed stateful routing and memory checkpointing, improving response accuracy by 30%.",
+      "Integrated LangSmith observability for tracing agent reasoning and performance.",
+    ],
+    tech: ["Python", "LangChain", "LangGraph", "Qdrant", "SQLite", "Docker"],
+    image: "/images/projects/travel-rag.jpg",
+    gitUrl: "https://github.com/Saumyaladdha/multi-agent-travel-rag",
   },
   {
     id: 2,
-    title: "Web-based Restaurant Management System",
-    description: "Transforms online ordering with a user-friendly platform using XAMPP, PHP, HTML, CSS, and MySQL, simplifying the food ordering process.",
-    image: "/images/projects/2.png",
-    tag: ["All", "Web"],
-    gitUrl: "https://github.com/Saumyaladdha/silver_spoon",
-  },
-  {
-    id: 3,
-    title: "E-commerce Application",
-    description: "Builds a dynamic e-commerce platform using the MERN stack, focusing on transaction security and user experience through intuitive interfaces and efficient catalog management.",
-    image: "/images/projects/3.jpg",
-    tag: ["All", "Web"],
-    gitUrl: "https://github.com/Saumyaladdha/Ecommerce",
-  },
-  {
-    id: 4,
-    title: "Portfolio Website",
-    description: "Features a secure, user-centric design using Next.js, Tailwind CSS, and Resend API, effectively showcasing professional capabilities and achievements.",
-    image: "/images/projects/4.jpg",
-    tag: ["All", "Web"],
-    gitUrl: "https://github.com/Saumyaladdha/Portfolio",
-  },
-  {
-    id: 5,
-    title: "E-Commerce Shipping Prediction",
-    description: "Revolutionizes logistics with data analytics using Random Forest and Gradient Boosting algorithms, enhancing delivery efficiency and customer satisfaction.",
-    image: "/images/projects/5.jpg",
-    tag: ["All", "AI/ML"],
-    gitUrl: "https://github.com/Saumyaladdha/Ecommerce_pred",
-  },
-  {
-    id: 6,
-    title: "Virtual Assistant",
-    description: "Empowers visually impaired individuals with AI-driven features like face recognition and text-to-speech, improving accessibility and social engagement.",
-    image: "/images/projects/6.jpg",
-    tag: ["All", "AI/ML"],
-    gitUrl: "https://github.com/Saumyaladdha/VirtualAssistant",
+    title: "Neural Music Generation System",
+    description: [
+      "Built deep learning pipelines using LSTM, GRU, and GANs for symbolic music generation.",
+      "Processed MIDI datasets using Music21 and Magenta for sequence modeling.",
+      "Optimized GAN training achieving 35% faster convergence and richer musical diversity.",
+    ],
+    tech: ["Python", "TensorFlow", "LSTM", "GRU", "GANs", "Music21"],
+    image: "/images/projects/music-lstm.jpg",
+    gitUrl:
+      "https://github.com/Saumyaladdha/Deep-music-generation-using-LSTM-GRU-GANs",
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.25 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
 const ProjectsSection = () => {
-  const [tag, setTag] = useState("All");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const handleTagChange = (newTag) => {
-    setTag(newTag);
-  };
-
-  const filteredProjects = projectsData.filter((project) =>
-    project.tag.includes(tag)
-  );
-
-  const cardVariants = {
-    initial: { y: 50, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-  };
-
   return (
-    <section id="projects">
-      <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
-        My Projects
-      </h2>
-      <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
-        <ProjectTag
-          onClick={handleTagChange}
-          name="All"
-          isSelected={tag === "All"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="AI/ML"
-          isSelected={tag === "AI/ML"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Web"
-          isSelected={tag === "Web"}
-        />
-      </div>
-      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
-        {filteredProjects.map((project, index) => (
+    <section id="projects" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-center text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 sm:mb-10 md:mb-12"
+      >
+        Featured AI Projects
+      </motion.h2>
+
+      <motion.ul
+        ref={ref}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 max-w-7xl mx-auto"
+      >
+        {projectsData.map((project) => (
           <motion.li
-            key={index}
+            key={project.id}
             variants={cardVariants}
-            initial="initial"
-            animate={isInView ? "animate" : "initial"}
-            transition={{ duration: 0.3, delay: index * 0.4 }}
+            whileHover={{ scale: 1.02 }}
+            className="group w-full"
           >
             <ProjectCard
-              key={project.id}
               title={project.title}
-              description={project.description}
               imgUrl={project.image}
               gitUrl={project.gitUrl}
-      
-            />
+            >
+              <ul className="text-gray-300 text-xs sm:text-sm space-y-1.5 sm:space-y-2 mt-3 sm:mt-4">
+                {project.description.map((point, idx) => (
+                  <li key={idx} className="leading-relaxed">• {point}</li>
+                ))}
+              </ul>
+
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-4 sm:mt-5">
+                {project.tech.map((tech, idx) => (
+                  <span
+                    key={idx}
+                    className="px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs rounded-full
+                    bg-violet-600/20 text-violet-300
+                    border border-violet-500/30"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </ProjectCard>
           </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </section>
   );
 };
